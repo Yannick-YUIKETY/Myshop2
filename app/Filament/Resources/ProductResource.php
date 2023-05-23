@@ -7,10 +7,11 @@ use Filament\Tables;
 use App\Models\Product;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Resources\Resource;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
+use Nuhel\FilamentCroppie\Components\Croppie;
 use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProductResource\RelationManagers;
@@ -37,7 +38,10 @@ class ProductResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->maxLength(65535),
                 Forms\Components\TextInput::make('price'),
-                FileUpload::make('image')
+                Croppie::make('image')
+                    ->enableOpen()->enableDownload()
+                    ->imageResizeTargetWidth('800')
+                    ->imageResizeTargetHeight('800')
 
             ]);
     }

@@ -1,20 +1,21 @@
-@foreach ($categories as $itemCategorie)
-<ul>
-    <li>
-        <a href="{{route('welcome.categorie',$itemCategorie)}}">{{$itemCategorie->name}}</a>
-    </li>
-</ul>
-@endforeach
+@extends('layouts.myshop')
+@section('main')
+
+
+    <div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
+
+        @forelse ($products as $itemProduct )
+
+        <x-product.card :itemProduct='$itemProduct'/>
+        @empty
+             no product
+        @endforelse
+
+    {{$products->links()}}
+
+    </div>
 
 
 
-@foreach ($products as $itemProduct)
-<ul>{{ $itemProduct->name }}
 
-    <li>{{ $itemProduct->description }}</li>
-    <li>{{ $itemProduct->price }} €</li>
-    <a href="{{route('welcome.detail',$itemProduct)}}">
-        detail
-    </a>
-</ul>
-@endforeach
+@endsection()

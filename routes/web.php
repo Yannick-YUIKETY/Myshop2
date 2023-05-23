@@ -33,9 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/cart/{product}',[CartController::class, 'index'])->name('cart') ;
+    Route::get('/cart',[CartController::class, 'index'])->name('cart') ;
     //route ajouter au panier
     Route::get('/add/{product}',[CartController::class, 'add'])->name('addtocart') ;
+    //supprimmer du panier
+    Route::get('/delete/{product}',[CartController::class, 'delete'])->name('delete') ;
 
 
 });
